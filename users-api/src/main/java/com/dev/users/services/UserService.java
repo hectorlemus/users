@@ -30,7 +30,7 @@ public class UserService {
   }
 
   public User createUser(final CreateUserDto userDto) {
-    final UserStatus status = this.userStatusRepository.findById(1l).get();
+    final UserStatus status = this.userStatusRepository.findById(userDto.getStatus()).get();
     final UserConverter converter = new UserConverter();
     final User user = converter.toModel(userDto, status);
     return this.userRepository.save(user);
