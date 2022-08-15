@@ -10,8 +10,11 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class EditUserComponent implements OnInit {
 
+  private userId: any;
+
   userForm: FormGroup | any;
   userStatus: any[] = [];
+  confirmDeletion = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,7 +24,10 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUserStatus();
-    this.route.params.subscribe((params) => this.loadUser(params['id']));
+    this.route.params.subscribe((params) => {
+      this.userId = params['id'];
+      this.loadUser();
+    });
   }
 
   isInputInvalid(inputName: string): boolean {
@@ -39,6 +45,17 @@ export class EditUserComponent implements OnInit {
     }
   }
 
+  deleteUser(): void {
+    if (this.userId && this.confirmDeletion) {
+      this.service.deleteUser(this.userId).subscribe((response) => {
+        this.router.navigate(['/']);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    this.confirmDeletion = true;
+  }
+
   private loadUserStatus(): void {
     this.service.getUserStatus().subscribe((response) => {
       this.userStatus = response;
@@ -47,8 +64,8 @@ export class EditUserComponent implements OnInit {
     })
   }
 
-  private loadUser(userId: any): void {
-    this.service.getUser(userId).subscribe((response) => {
+  private loadUser(): void {
+    this.service.getUser(this.userId).subscribe((response) => {
       this.createUserForm(response);
     }, (error) => {
       console.log(error);
