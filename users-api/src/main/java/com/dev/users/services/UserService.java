@@ -33,6 +33,10 @@ public class UserService {
     return this.userRepository.save(user);
   }
 
+  public User updateUser(final User user) {
+    return this.userRepository.save(user);
+  }
+
   public void deleteUser(final Long userId) {
     this.userRepository.deleteById(userId);
   }
