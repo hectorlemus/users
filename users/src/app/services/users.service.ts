@@ -15,4 +15,13 @@ export class UsersService {
   public getUsers(): Observable<any> {
     return this.http.get(`${this.URL}/users`);
   }
+
+  public getUserStatus(): Observable<any> {
+    return this.http.get(`${this.URL}/status`);
+  }
+
+  public saveUser(user: any): Observable<any> {
+    return this.http.post(`${this.URL}/users`, user);
+  }
+
 }

@@ -8,6 +8,10 @@ const routes: Routes = [
     path: "",
     component: UsersComponent
   },
+  {
+    path: "add",
+    component: CreateUserComponent
+  }
 ];
 
 @NgModule({

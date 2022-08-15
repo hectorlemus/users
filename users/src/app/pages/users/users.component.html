@@ -1,5 +1,10 @@
-<div class="shadow overflow-hidden rounded-md">
-  <div class="bg-white">
+<div>
+  <button routerLink="add"
+    class="bg-sky-600 hover:bg-sky-700 text-white font-bold p-2 rounded inline-flex">
+    <span>Crear usuario</span>
+  </button>
+
+  <div class="shadow overflow-hidden rounded-md bg-white mt-4">
     <div class="flex flex-col" *ngIf="users">
       <div class="overflow-x-auto -mx-8">
         <div class="align-middle inline-block min-w-full px-8">
