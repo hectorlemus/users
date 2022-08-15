@@ -55,7 +55,10 @@ public class UserController {
   public ResponseEntity<User> updateUser(@RequestBody final User user) {
     try {
       final User savedUser = this.userService.updateUser(user);
-      return new ResponseEntity<>(savedUser, HttpStatus.OK);
+      if (savedUser != null) {
+        return new ResponseEntity<>(savedUser, HttpStatus.OK);
+      }
+      throw new Exception("Not found user");
     } catch (Exception e) {
       LOGGER.info(e.getMessage());
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

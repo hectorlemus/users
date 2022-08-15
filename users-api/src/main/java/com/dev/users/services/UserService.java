@@ -37,7 +37,9 @@ public class UserService {
   }
 
   public User updateUser(final User user) {
-    return this.userRepository.save(user);
+    return this.userRepository.findById(user.getId()).map((e) -> {
+      return this.userRepository.save(user);
+    }).orElseGet(() -> null);
   }
 
   public void deleteUser(final Long userId) {
