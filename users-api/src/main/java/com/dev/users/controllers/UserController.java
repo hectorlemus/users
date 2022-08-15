@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dev.users.dto.CreateUserDto;
 import com.dev.users.models.User;
 import com.dev.users.services.UserService;
 
@@ -40,7 +41,7 @@ public class UserController {
   }
 
   @PostMapping("/users")
-  public ResponseEntity<User> addUser(@RequestBody final User user) {
+  public ResponseEntity<User> createUser(@RequestBody final CreateUserDto user) {
     try {
       final User savedUser = this.userService.createUser(user);
       return new ResponseEntity<>(savedUser, HttpStatus.CREATED);

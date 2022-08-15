@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.dev.users.converters.UserConverter;
+import com.dev.users.dto.CreateUserDto;
 import com.dev.users.models.User;
 import com.dev.users.models.UserStatus;
 import com.dev.users.repositories.UserRepository;
@@ -27,9 +29,10 @@ public class UserService {
     return userRepository.findAll();
   }
 
-  public User createUser(final User user) {
+  public User createUser(final CreateUserDto userDto) {
     final UserStatus status = this.userStatusRepository.findById(1l).get();
-    user.setStatus(status);
+    final UserConverter converter = new UserConverter();
+    final User user = converter.toModel(userDto, status);
     return this.userRepository.save(user);
   }
 
