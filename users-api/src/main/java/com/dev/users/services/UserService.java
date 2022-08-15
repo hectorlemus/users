@@ -19,5 +19,13 @@ public class UserService {
   public List<User> allUsers() {
     return userRepository.findAll();
   }
-  
+
+  public User createUser(final User user) {
+    return this.userRepository.save(user);
+  }
+
+  public void deleteUser(final Long userId) {
+    this.userRepository.deleteById(userId);
+  }
+
 }
