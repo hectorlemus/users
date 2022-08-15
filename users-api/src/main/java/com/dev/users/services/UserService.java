@@ -29,6 +29,10 @@ public class UserService {
     return userRepository.findAll();
   }
 
+  public User getUser(final Long id) {
+    return userRepository.findById(id).get();
+  }
+
   public User createUser(final CreateUserDto userDto) {
     final UserStatus status = this.userStatusRepository.findById(userDto.getStatus()).get();
     final UserConverter converter = new UserConverter();

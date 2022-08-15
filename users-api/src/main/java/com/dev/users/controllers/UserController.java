@@ -40,6 +40,17 @@ public class UserController {
     }
   }
 
+  @GetMapping("/users/{id}")
+  public ResponseEntity<User> getUser(@PathVariable  final Long id) {
+    try {
+      final User user = this.userService.getUser(id);
+      return new ResponseEntity<>(user, HttpStatus.OK);
+    } catch (Exception e) {
+      LOGGER.info(e.getMessage());
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
   @PostMapping("/users")
   public ResponseEntity<User> createUser(@RequestBody final CreateUserDto user) {
     try {
