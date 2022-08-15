@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dev.users.dto.CreateUserDto;
+import com.dev.users.dto.EditUserDto;
 import com.dev.users.models.User;
 import com.dev.users.services.UserService;
 
@@ -63,7 +64,7 @@ public class UserController {
   }
 
   @PutMapping("/users")
-  public ResponseEntity<User> updateUser(@RequestBody final User user) {
+  public ResponseEntity<User> updateUser(@RequestBody final EditUserDto user) {
     try {
       final User savedUser = this.userService.updateUser(user);
       if (savedUser != null) {

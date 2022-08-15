@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.dev.users.converters.UserConverter;
 import com.dev.users.dto.CreateUserDto;
+import com.dev.users.dto.EditUserDto;
 import com.dev.users.models.User;
 import com.dev.users.models.UserStatus;
 import com.dev.users.repositories.UserRepository;
@@ -40,8 +41,11 @@ public class UserService {
     return this.userRepository.save(user);
   }
 
-  public User updateUser(final User user) {
-    return this.userRepository.findById(user.getId()).map((e) -> {
+  public User updateUser(final EditUserDto userDto) {
+    final UserStatus status = this.userStatusRepository.findById(userDto.getStatus()).get();
+    return this.userRepository.findById(userDto.getId()).map((e) -> {
+      final UserConverter converter = new UserConverter();
+      final User user = converter.editToModel(userDto, status);
       return this.userRepository.save(user);
     }).orElseGet(() -> null);
   }
