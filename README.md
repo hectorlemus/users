@@ -1,3 +1,13 @@
+### Requirements
+- [docker](https://docs.docker.com/engine/install/ubuntu/)
+- [docker-compose](https://docs.docker.com/compose/install/compose-plugin/#installing-compose-on-linux-systems)
+- [java](https://openjdk.org/install/)
+- [maven](https://maven.apache.org/install.html)
+- [npm (node ^12.0.0)](https://nodejs.org/es/download/package-manager/)
+- [angular cli](https://angular.io/cli)
+
+<hr/>
+
 #### Data Base
 
 - Navigate to `docker-postgresql` directory.
